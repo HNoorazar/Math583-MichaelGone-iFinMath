@@ -1,0 +1,14 @@
+## These requirements are for the packages I like to have installed.
+
+EPD>=7.3
+
+-r doc.txt
+-r debug.txt
+-r testing.txt
+-r profile.txt
+-r emacs.txt
+-r numeric.txt
+-r vc.txt
+-r package.txt
+-r misc.txt
+-r mmf.txt

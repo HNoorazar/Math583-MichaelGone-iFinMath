@@ -1,0 +1,7 @@
+# Bash Input Init File; -*-Shell-script-*-
+# dest = ~/.inputrc     # Keep this as the 2nd line for mmf_init_setup
+
+"\M-[A":       history-search-backward
+"\M-[B":       history-search-forward
+"\e[A":        history-search-backward
+"\e[B":        history-search-forward

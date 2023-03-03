@@ -1,0 +1,103 @@
+# Mercurial (hg) Init File; -*-Shell-script-*-
+# dest = ~/.hgignore     # Keep this as the 2nd line for mmf_init_setup
+
+syntax: glob
+
+# Personal stuff
+.dropbox
+.DS_Store
+
+.coverage                       # Code coverage reports
+.eggs                           # Python packages
+.tox                            # Testing files
+
+
+*.pyc                           # Compiled python files
+*.pyo                           # Optimized python files
+
+# Generic CoCalc Stuff - taken from ~/.gitignore
+# LaTeX stuff
+_build                          # I put LaTeX build products here.
+*.acn
+*.glo
+*.out
+*.upb
+*.aux
+*.dvi
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex*
+
+# VIM
+*.swp
+
+### CoCalc Platform ###
+/.snapshots/
+.*.sage-chat
+.*.sage-history
+.*.sage-jupyter
+.*.sage-jupyter2
+.*.syncdb
+.*.syncdoc
+.*.syncdoc[34]
+
+### Linux hidden files ###
+/.*
+*~
+
+### Python ###
+__pycache__/
+*.py[cod]
+
+# SageMath parsed files
+*.sage.py
+
+# mypy typechecker
+.mypy_cache/
+
+### JupyterNotebooks ###
+.ipynb_checkpoints/
+
+### LaTeX ###
+# Core latex/pdflatex auxiliary files:
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+# Bibliography auxiliary files (bibtex/biblatex/biber):
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+# Build tool auxiliary files:
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+# knitr
+*-concordance.tex
+
+# sagetex
+*.sagetex.sage
+*.sagetex.py
+*.sagetex.scmd
+
+# pythontex
+*.pytxcode
+pythontex-files-*/

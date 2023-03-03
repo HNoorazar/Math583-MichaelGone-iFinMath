@@ -1,0 +1,5 @@
+BUG: Resolve issue 22 for git config. Better CoCalc Updates.
+
+- Use environmental variables now GIT_AUTHOR_NAME etc.
+- Fix CoCalc updates for mercurial, jupytext, evolve, and hg-git.
+

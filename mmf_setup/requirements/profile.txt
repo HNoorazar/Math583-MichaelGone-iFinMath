@@ -1,0 +1,4 @@
+## Profiling tools
+SquareMap>=1.0.1
+RunSnakeRun>=2.0.2b1
+hg+https://bitbucket.org/robertkern/line_profiler#egg=line_profiler-dev

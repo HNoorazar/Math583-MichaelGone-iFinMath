@@ -1,0 +1,9 @@
+# Documentation
+recursive-include docs *
+
+# Themes etc.
+recursive-include src/mmf_setup/_data *
+
+# Misc
+include CHANGES.txt
+include LICENSE.txt

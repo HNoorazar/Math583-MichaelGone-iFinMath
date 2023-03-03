@@ -1,0 +1,132 @@
+# Simple version of the extension implemented as aliases.
+
+[extensions]
+strip=
+
+[alias]
+# This version will not run commit hooks
+_commit = commit
+
+# Sets the parent without changing local files
+_setparent = !hg debugsetparents "$@" && hg debugrebuilddirstate
+
+# Creates a checkpoint of the current set of files.  If there are
+# changes, then this is a new commit, otherwise it simply refers to
+# the existing node. The following tags are set:
+#
+#   _c_chk: Points to the node that represents the current
+#           state of the working copy.  This may or may not be a new
+#           node depending on whether or not the working copy differs
+#           from the parent.   The creation of this tag is chained
+#           with ";" so it always gets created.
+#   _c_new: This is created iff a new node is created for the
+#           checkpoint.  This new node should be stripped later.  Note
+#           that the creation of this tag is chained with the _commit
+#           command using "&&" so it only is created if _commit succeds
+#           and actually creates a new node.
+ccheckpoint = !{
+    hg bookmarks -i _c_parent
+    hg _commit -qm "CHK: auto checkpoint"  && hg tag -fl _c_new 2> /dev/null
+    hg bookmarks -i _c_chk
+  }
+
+crestore = !{
+    echo "restoring output"
+    # Use update here to get back to the correct branch!
+    hg update -qC _c_parent 2> /dev/null
+    hg revert --all -qCr _c_chk 2> /dev/null
+    hg strip _c_new --no-backup 2> /dev/null
+    hg bookmark --delete _c_parent
+    hg bookmark --delete _c_chk
+  }
+
+cclean = !{
+    echo "cleaning output"
+    # This convoluted arrangement of getting the parent ID allows
+    # cclean to work with the null node as a parent (i.e. with a clean
+    # repo.)  In this case, one cannot add a tag.
+    hg ccheckpoint
+    hg update -qC _c_parent 2> /dev/null
+    hg revert --all -qCr _c_chk  2> /dev/null
+    hg status -man0 | xargs -0 nbstripout
+  }
+
+cstatus = !hg cclean && { hg status "$@"; hg crestore; }
+cdiff   = !hg cclean && { hg diff   "$@"; hg crestore; }
+cediff  = !hg cclean && { hg ediff  "$@"; hg crestore; }
+
+crecord = !hg cclean && {
+    hg record "$@"
+    hg bookmark --delete _c_parent
+    hg tag -fl _c_parent 2> /dev/null
+    hg crestore
+    hg _setparent _c_parent 2> /dev/null
+    hg tag -l --remove _c_parent 2> /dev/null
+  }
+
+# This version does not link the outputs on the output branch
+_ccommit_output_nobranch = !{
+    hg bookmarks -i _c_parent
+    hg revert --all -qCr _c_chk  2> /dev/null
+    hg revert --all -qCr _c_chk  2> /dev/null
+    hg _commit -qm "...: Automatic commit with .ipynb output" && {
+        echo "automatic commit of output"
+    } || {
+        echo "no output to commit"
+    }
+  }
+
+# Thise version will force all of the automatic output onto the auto_output branch.
+_ccommit_output_branch = !{
+    hg bookmarks -i _c_parent
+    hg revert --all -qCr _c_chk  2> /dev/null
+    hg summary | grep -q 'commit: (clean)' && {
+        echo "no output to commit"
+    } || {
+        hg update -qC auto_output 2> /dev/null && {
+            # Before merging, check if there are differences!
+            hg revert --all -qCr _c_chk  2> /dev/null
+            hg summary | grep -q 'commit: (clean)' || {
+                # Only merge if there are changes!
+                hg update -qC _c_chk  # Makes sure any files are added then removed
+                hg update -qC auto_output
+                hg merge -q _c_parent --tool :other 2> /dev/null
+                # We do this twice because of a strange bug that removes files!
+                hg revert --all -qCr _c_chk  2> /dev/null
+                hg revert --all -qCr _c_chk  2> /dev/null
+                echo "automatic commit of output"
+                hg _commit -qm "...: Automatic commit with .ipynb output"
+            }
+        } || {
+            # No auto_output branch exists yet.
+            hg _setparent _c_parent 2> /dev/null
+            hg branch auto_output
+            echo "automatic commit of output"
+            hg _commit -qm "...: Automatic commit with .ipynb output"
+        }
+    }
+  }
+
+ccommit = !hg cclean && {
+    hg summary | grep -q 'commit: (clean)' && {
+        # Do this if there is nothing clean to commit... we still try
+        # to commit to get the message, but always commit the output
+        hg commit "$@"; hg _ccommit_output
+    } || {
+        # Do this if there is something to commit... only commit the
+        # output if the clean commit succeeds.
+        hg commit "$@" && hg _ccommit_output
+    }
+    hg crestore
+  }
+
+crecord = !hg cclean && {
+    hg summary | grep -q 'commit: (clean)' || {
+        hg record "$@"
+        hg _setparent _c_parent 2> /dev/null
+    }
+    hg crestore
+  }
+
+# Select which version you want by changing this alias
+_ccommit_output = _ccommit_output_branch

@@ -1,0 +1,1 @@
+folder for stock data

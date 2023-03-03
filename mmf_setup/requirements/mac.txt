@@ -1,0 +1,2 @@
+# Various Mac OS X related tools
+PyObjc>=2.4

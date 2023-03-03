@@ -1,0 +1,2 @@
+[paths]
+default = ssh://git@hg.iscimath.org:11022/mforbes/mmf_setup

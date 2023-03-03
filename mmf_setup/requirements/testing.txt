@@ -1,0 +1,4 @@
+## Testing
+coverage>=3.5.1
+nose>=1.1.2
+git+http://github.com/nose-devs/nose.git#egg=nose-dev

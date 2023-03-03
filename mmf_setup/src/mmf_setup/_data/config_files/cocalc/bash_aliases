@@ -1,0 +1,51 @@
+# Bash Aliases etc.; -*-Shell-script-*-
+# dest=~/.bash_aliases     # Keep this as the 2nd line for mmf_init_setup
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# This content inserted by mmf_setup
+# Add my mercurial commands like hg ccom for removing output from .ipynb files
+. mmf_setup
+
+# Git config
+export GIT_AUTHOR_NAME="${LC_GIT_USERNAME}"
+export GIT_AUTHOR_EMAIL="${LC_GIT_USEREMAIL}"
+export GIT_COMMITTER_NAME="${LC_GIT_USERNAME}"
+export GIT_COMMITTER_EMAIL="${LC_GIT_USEREMAIL}"
+
+git config --global alias.lg1 $'log --graph --abbrev-commit --decorate --date=relative --format=format:\'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)\' --all'
+git config --global alias.lg2 $'log --graph --abbrev-commit --decorate --format=format:\'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n\'\'          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)\' --all'
+git config --global alias.lg $'!git lg1'
+
+# Bash Command History
+# https://www.digitalocean.com/community/tutorials/how-to-use-bash-history-commands-and-expansions-on-a-linux-vps
+# https://superuser.com/questions/232885
+export INPUTRC=~/.inputrc
+export HISTSIZE=5000           # Commands in memory.
+export HISTFILESIZE=500000     # Should keep file <~5MB
+export HISTIGNORE='&:ls:[bf]g:exit:pwd:rm *;'
+export HISTCONTROL=ignoreboth:erasedups
+shopt -s histappend            # Ensure we keep history
+
+export SCREENDIR=~/.screen
+
+# CoCalc defaults to joe: https://joe-editor.sourceforge.io/.  Here I
+# allow the user to customize the editor by passing the LC_EDITOR
+# environmental variable.  Add SetEnv LC_EDITOR=vi to your ~/.ssh/config file.
+if [ -n ${LC_EDITOR} ]; then
+    export EDITOR=${LC_EDITOR}
+fi
+
+# pip bash completion start
+_pip_completion()
+{
+    COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
+                   COMP_CWORD=$COMP_CWORD \
+                   PIP_AUTO_COMPLETE=1 $1 ) )
+}
+complete -o default -F _pip_completion pip
+# pip bash completion end

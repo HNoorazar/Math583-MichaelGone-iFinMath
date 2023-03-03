@@ -1,0 +1,7 @@
+# myrepos (mr) Config File; -*-Shell-script-*-
+# dest = ~/.mrconfig     # Keep this as the 2nd line for mmf_init_setup
+
+include = cat "${MMF_SETUP}/_data/mrconfig"
+
+[DEFAULT]
+hg_out = hg out

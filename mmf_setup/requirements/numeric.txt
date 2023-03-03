@@ -1,0 +1,25 @@
+## Numerical Computing:
+## These are useful for numerical computing
+numpy>=1.7.0
+scipy>=0.11.0
+matplotlib>=1.1.1
+sympy>=0.7.2
+
+hdf5>=1.8.9
+
+Theano>=0.5.0
+anfft>=0.2
+
+scikits.bvp1lg>=0.2.5
+
+scikits.talkbox>=0.2.5
+scikits.timeseries>=0.91.3
+spectrum>=0.9
+
+cvxopt>=1.1.3
+
+pp>=1.6.2
+
+swig>=1.3.40
+
+hg+ssh://hg@bitbucket.org/mforbes/pygsl#egg=pygsl-dev

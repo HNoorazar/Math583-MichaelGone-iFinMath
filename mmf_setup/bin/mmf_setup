@@ -1,0 +1,70 @@
+#!/bin/bash
+#
+# Initialize the environment for use with my tools.
+#
+# Several additional options are provided as one-time initializations:
+#   cocalc: Initial a CoCalc project for use as described here:
+#      https://alum.mit.edu/www/mforbes/public/notes/cocalc-workflow/
+
+function usage() {
+    echo "usage: source mmf_setup [-v]  OR  . mmf_setup [-v]  OR  mmf_setup cocalc"
+    echo
+    echo "  -v : show variables that are set"
+    echo
+    echo "For initial setup on cocalc.com projects:"
+    echo
+    echo "   mmf_setup cocalc"
+    echo
+}
+
+BIN_DIR="$(dirname $BASH_SOURCE{0})"
+
+for i in "$@"
+do
+    case $i in
+        -v)
+            echo "mmf_setup environment:"
+            echo "$(mmf_setup_bash.py)"
+            ;;
+        smc|cocalc)
+            hg="$(type -p hg)"
+            if [[ -n "${hg}" ]];
+            then
+		            hg_python="$(hg debuginstall -T'{pythonexe}')"
+                echo "Upgrading mercurial, hg-evolve, and hg-git for hg=${hg}..."
+                echo "${hg_python} -m pip install --upgrade --user mercurial hg-evolve hg-git"
+                ${hg_python} -m pip install --upgrade --user mercurial hg-evolve hg-git
+            else
+                echo "Installing mercurial, hg-evolve, and hg-git for python3..."
+                python3 -m pip install --upgrade --user mercurial hg-evolve hg-git
+            fi
+            
+            DATA_DIR="$(python -c 'import mmf_setup;print(mmf_setup.DATA)')"
+            echo "Setting up config files for CoCalc..."
+            shift # move to the next argument
+            "$BIN_DIR/mmf_initial_setup" \
+                 -v "$DATA_DIR/config_files/cocalc" $*
+            cat "$DATA_DIR/config_files/cocalc/message.txt"
+
+            # Upgrade jupytext
+            echo "Upgrading jupytext for python3..."
+            python3 -m pip install --upgrade --user jupytext
+            exit 0
+            ;;
+        *)
+            usage
+            exit 1
+            ;;
+    esac
+    shift # move to the next argument
+done
+
+# Ensure that this script is sourced, not executed
+if [[ -n $BASH_VERSION ]] && [[ "$(basename "$0" 2> /dev/null)" == "mmf_setup" ]];
+then
+    >&2 echo "Error: mmf_setup must be sourced. Run 'source mmf_setup' or '. mmf_setup' instead of 'mmf_setup'"
+    usage
+    exit 1
+fi
+
+eval "$(mmf_setup_bash.py)"

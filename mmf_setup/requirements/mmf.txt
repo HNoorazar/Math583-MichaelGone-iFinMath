@@ -1,0 +1,5 @@
+## My source code and packages.  These are installed as source packages
+-e hg+ssh://hg@bitbucket.org/mforbes/gpe_vortex#egg=MMFGPE-dev
+-e hg+ssh://maxwell.phys.washington.edu/current/slda#egg=MMFslda-dev
+-e hg+ssh://hg@bitbucket.org/mforbes/pymmf#egg=pymmf-dev
+

@@ -1,0 +1,21 @@
+[ui]
+username = test
+slash = True
+interactive = False
+mergemarkers = detailed
+promptecho = True
+
+[extensions]
+graphlog =
+mmf_setup.nbclean = $MMF_SETUP/nbclean.py
+strip =
+
+[alias]
+lga = glog --style=${MMF_SETUP}/_data/hgthemes/map-cmdline.lg -l20
+
+[defaults]
+commit = -d "0 0"
+ccommit = -d "0 0"
+shelve = --date "0 0"
+tag = -d "0 0"
+glog = --template '{rev}: {author} {desc|strip|firstline} ({date|shortdate}) {branches} {boorkmarks} {tags}\n'

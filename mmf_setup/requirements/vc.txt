@@ -1,0 +1,5 @@
+## Version control.  Mecurial extensions etc.
+mercurial>=2.4-rc
+hg-git>=0.3.3
+hghooks>=1.0
+dulwich>=0.8.5

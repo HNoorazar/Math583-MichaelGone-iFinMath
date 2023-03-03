@@ -1,0 +1,37 @@
+.. -*- rst -*- -*- restructuredtext -*-
+
+.. This file is included by others.  It contains external links and
+.. replacements.
+
+
+.. |virtualenv.py| replace:: ``virtualenv.py``
+.. _virtualenv.py: https://raw.github.com/pypa/virtualenv/master/virtualenv.py
+
+.. |EPD| replace:: Enthough Python Distribution
+.. _EPD: http://www.enthought.com/products/epd.php
+
+.. _mercurial: http://mercurial.selenic.com/
+.. _virtualenv: http://www.virtualenv.org/en/latest/
+.. _IPython: http://ipython.org/
+.. _Ipython notebook: \
+   http://ipython.org/ipython-doc/dev/interactive/htmlnotebook.html
+.. |pip| replace:: ``pip``
+.. _pip: http://www.pip-installer.org/
+.. _git: http://git-scm.com/
+.. _github: https://github.com
+.. _RunSnakeRun: http://www.vrplumber.com/programming/runsnakerun/
+.. _GSL: http://www.gnu.org/software/gsl/
+.. _pygsl: https://bitbucket.org/mforbes/pygsl
+.. _Sphinx: http://sphinx-doc.org/
+.. _SciPy: http://www.scipy.org/
+.. _NumPy: http://numpy.scipy.org/
+.. _Python: http://www.python.org/
+.. _matplotlib: http://matplotlib.org/
+.. _Matlab: http://www.mathworks.com/products/matlab/
+.. _MKL: http://software.intel.com/en-us/intel-mkl
+.. _Intel compilers: http://software.intel.com/en-us/intel-compilers
+.. _Bento: http://cournape.github.com/Bento/
+.. _pyaudio: http://people.csail.mit.edu/hubert/pyaudio/
+.. _PortAudio: http://www.portaudio.com/archives/pa_stable_v19_20111121.tgz
+.. _MathJax: http://www.mathjax.org/
+.. _reStructuredText: http://docutils.sourceforge.net/rst.html

@@ -1,0 +1,13 @@
+name: cycles
+channels:
+  - mforbes
+  - defaults
+dependencies:
+  - mmf_setup
+  - anaconda
+  - pip
+  - pip:
+    - deepdiff        # On conda-forge
+    - uncertainties   # On conda-forge
+    - nasdaq_stock
+    - yfinance

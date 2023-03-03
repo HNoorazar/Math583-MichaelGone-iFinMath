@@ -1,0 +1,77 @@
+=========
+ Changes
+=========
+
+0.3.1:
+  - Added `mmf_setup cocalc` initialization for CoCalc.com projects
+    (changed from `mmf_setup smc`).
+  - Add message to `nbinit()` call indicating that HGROOT has been added
+    to `sys.path`.
+
+0.3.0:
+  - Support python 3 - drop support for python 2.
+  - Conda installable from mforbes channel on anaconda cloud.
+  - Add missing default.tex theme so that nbinit() brings in math
+    definitions even if no theme is specified.
+  - Fixed KeyError: 'asyncio' error on failed IPython import.
+
+0.1.13:
+  - Incomplete version... everything here is rolled into 0.3.0
+
+0.1.12:
+  - Made `mmf_initial_setup` python 3 compliant.
+  - Added logging to nbinit() and made some slight tweaks to HGROOT.
+  - Added \D, \sn, \cn, \dn commands for mathjax.
+  
+0.1.11:
+  - Resolve issue #20:
+
+    - `mmf_setup.set_path.set_path_from_file` allows for configuration of path
+      in `setup.cfg` file.
+    - Fix python 3 bug: TypeError: Can't mix strings and bytes in path components
+	
+0.1.10:
+  - Added better backwards compatibility for previous changes.
+  - Simplified nbinit theme management and use 'default' theme as default.
+
+    - New themes only need to overwrite what they need.
+    - Don't change fonts as default since this does not work well on CoCalc (the
+      code cells change size on clicking which is a pain.)
+
+0.1.9:
+  - Resolve issues:
+
+    - #17: store mmf_setup.HGROOT
+    - #18: safer exception handling with nbclean commands so data is not lost
+    - #19: nbclean works with new mercurial API
+      
+  - Added \erfi, \sech, \Braket
+  - `import mmf_setup.set_path.hgroot` will add HGROOT to path without IPython
+  - Added standalone nbinit.py for use without mmf_setup installs.
+
+0.1.8:
+  - Resolves issue #15.
+  - Use $BASH_SOURCE{0} to get BIN_DIR (resolves issue #16)
+  - Added nbinit(hgroot) option to add `hg root` to `sys.path` (issue #13)
+
+0.1.7:
+  - Changed option to --clean-all (resolves issue #7)
+  - Updated the notebook style (added \Tr, fixed output overflow issue)
+  - Added pip option mmf_setup[nbextensions]
+  - Removed 'EnableNBExtensionApp' dependence which broke new Jupyter (resolves
+    issue #12)
+  - Added some files for initializing setup on Sage Mathcloud (SMC) (resolves
+    issue #14).
+
+    - Added mmf_initial_setup script and some init files (.inputrc, .hgrc,
+      .bash_aliases).
+    - Run with `mmf_setup smc`
+      
+  - Removed old extension manager since nbextensions are quite good now.
+
+0.1.6:
+  - Added cupdate command (resolves issue #4)
+  - Fixed bug with ccommit where it did not accept a list of files
+    (issue #6)
+  - Issue commands in a context to provide a robust mechanism for
+    recovery (issue #5)

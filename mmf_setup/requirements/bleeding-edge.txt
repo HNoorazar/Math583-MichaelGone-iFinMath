@@ -1,0 +1,5 @@
+## Bleeding edge repositories... from the version control.
+-e git+http://github.com/numpy/numpy#egg=numpy-dev
+-e git+http://github.com/scipy/scipy#egg=scipy-dev
+-e git+http://github.com/matplotlib/matplotlib#egg=matplotlib-dev
+

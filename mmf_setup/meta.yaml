@@ -1,0 +1,53 @@
+{% set name = "mmf_setup" %}
+{% set version = "0.3.1" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  path: .
+  #hg_rev: {{ version }}
+  #hg_url: https://hg@bitbucket.org/mforbes/mmf_setup
+
+build:
+  noarch: python
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+
+requirements:
+  host:
+    - python >=3
+    - setuptools
+    - nbstripout >=0.2.0
+  run:
+    - python >=3
+    - nbstripout >=0.2.0
+    - python-hglib
+
+test:
+  source_files:
+    - '*'
+    - '.*'
+  imports:
+    - mmf_setup
+    - mmf_setup.set_path
+  requires:
+    - coverage
+    - notebook
+    - pytest >=2.8.1
+    - pytest-cov >=2.2.0
+    - pytest-flake8
+    - mercurial >=5.2
+  commands:
+    - make test
+
+about:
+  home: https://pypi.org/project/mmf-setup/
+  # https://bitbucket.org/mforbes/mmf_setup
+  license: GNU General Public v3 or later (GPLv3+)
+  license_family: GPL3
+  license_file: LICENSE.txt
+  summary: Python Tools
+  doc_url: https://pypi.org/project/mmf-setup/
+  dev_url:

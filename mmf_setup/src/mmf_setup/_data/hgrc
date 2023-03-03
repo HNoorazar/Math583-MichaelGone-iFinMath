@@ -1,0 +1,111 @@
+# Much of tis configuration comes from
+# https://octobus.net/blog/2020-11-26-modern-mercurial.html
+[ui]
+tweakdefaults = true
+# Merge conflict markers in files (they look like "<<<<<<<") are more verbose
+mergemarkers = detailed
+# Uses the internal non-interactive simple merge algorithm for merging
+# files. It will fail if there are any conflicts and leave markers in the
+# partially merged file. Marker will have three sections, one from each
+# side of the merge and one for the base content.
+merge = :merge3
+
+ccommit.verbose = true
+
+[commands]
+# Require the user to pass a revision (or revset) to "push" instead of pushing
+# all heads by default.
+push.require-revs = true
+
+[paths]
+# Default to the current revision (`.`) when pushing to `default`. 
+default:pushrev = .
+
+[extensions]
+# ==== "Core" extensions ====
+# Extensions that come pre-packaged with Mercurial:
+
+color=
+histedit=
+rebase=
+record=
+shelve=
+strip=
+
+# Automatically finds where to amend the different bits of your working
+# directory into the right changesets and does so interactively.
+absorb =
+
+# These need pip install --user hg-evolve
+evolve =
+topic =
+
+mmf_setup.nbclean=$MMF_SETUP/nbclean.py
+
+[hooks]
+# This hook adds "%include ../.hgrc" to .hg/hgrc if the .hgrc file exists in
+# the top level.  This allows one to store a set of paths for example.
+# See http://stackoverflow.com/a/24195392/1088938
+update = if [ -e .hgrc ] && touch .hg/hgrc \
+                         && ! grep -q '%include \.\./\.hgrc' .hg/hgrc; then \
+           echo '%include ../.hgrc' >> .hg/hgrc; \
+         fi
+
+[alias]
+lga = log -G --template={lg_changeset} -l20
+checkpoint = !$HG commit -m "CHK: Automatic checkpoint" && \
+    $HG phase -fs . || true && \
+    $HG debugsetparents .^1 && \
+    $HG debugrebuildstate
+chk = checkpoint
+
+cediff  = !hg nbclean && { hg ediff  "$@"; hg nbrestore; }
+
+# Template styling tricks:
+# http://jamie-wong.com/2012/07/11/my-mercurial-setup-and-workflow-at-khan-academy
+# Coloring from http://stackoverflow.com/a/16217915/1088938
+# http://jordi.inversethought.com/blog/customising-mercurial-like-a-pro/
+# https://www.mercurial-scm.org/repo/hg/help/templates
+
+[color]
+lg.author = blue bold
+lg.changeset.secret = blue bold
+lg.changeset.draft = yellow bold
+lg.changeset.public = red bold
+lg.branches = blue bold
+lg.topics = green bold
+lg.tags = magenta
+lg.bookmarks = red
+lg.description.here = bold
+
+[templatealias]
+lg_author = "{label('lg.author', author|user)}"
+lg_date =   "{label('lg.date', '({date|age})')}"
+lg_phase = "{sub(r'secret', 's', sub(r'draft','d', sub(r'public','p',phase)))}"
+lg_branch = '{label("lg.branch", ifeq(branch, "default", "", branch))}'
+
+lg_changeset = "{label('lg.rev', '{lg_rev}')} \
+               {lg_author} \
+               {lg_date} \
+               {lg_branches}\n \
+               {lg_desc}\n"
+
+lg_desc = '{label(ifcontains(rev, revset("parents()"), 
+                             "lg.description.here",
+                             "lg.description"),
+                  "{desc|firstline|strip}")}'
+# Use : before phase so that I can double click and select revision number
+lg_rev = '{label("lg.changeset.{phase}", "{lg_rev_}")}'
+lg_rev_ = '{rev}:{ifeq(verbosity, r"verbose", "{node|short}:")}{lg_phase}'
+lg_branches = '{label("lg.branches", "{lg_branch}{lg_topics}{lg_bookmarks}{lg_tags}")}'
+lg_tags = '{label("lg.tags", if(tags, " {tags}"))}'
+lg_topics = '{label("lg.topics", if(topics, "[{topics}]"))}'
+lg_bookmarks = '{label("lg.bookmarks", if(bookmarks, " {bookmarks}"))}'
+
+[extdiff]
+# add new command called ediff, runs emacs diff
+cmd.ediff = ediff
+
+[merge-tools]
+emerge.args = $local $other $base $output
+emerge.premerge = True

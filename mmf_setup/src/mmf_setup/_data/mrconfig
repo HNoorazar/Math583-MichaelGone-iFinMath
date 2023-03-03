@@ -1,0 +1,85 @@
+# -*- mode: sh; -*-
+# myrepos config file.  For info about myrepos, see
+#
+# http://myrepos.branchable.com
+# https://github.com/joeyh/myrepos
+#
+# This provides freeze and unfreeze actions which allow you to freeze the state
+# of a collection of repositories into a file `mrfreeze` next to your
+# `.mrconfig` file.  To freeze several different states, one should version
+# control the `mrfreeze` file in a top level repo.  This provides a
+# light-weight alternative to the various subrepos solutions.
+#
+#   mr freeze [ -f ]
+#     Record all version into the top level `mrfreeze` file.  Use the -f option
+#     to force freezing of repos even if they have uncommited changes.
+#   mr unfreeze
+#     Update all repos to the version in `mrfreeze`.  Versions not listed in
+#     the `mrfreeze` file will simply be updated to the latest version.
+#
+# Installation: Include this file in your ~/.mrconfig as follows:
+#
+#   include = cat ${MMF_SETUP}/_data/mrconfig
+
+[DEFAULT]
+lib =
+    set -ue -o pipefail
+    TOP_DIR=$(dirname "$MR_CONFIG")
+    MR_FREEZE=${MR_FREEZE-"${TOP_DIR}/mrfreeze"}   # Freeze file
+    _err() { echo "$@" 1>&2; exit -1; }
+    _abspath() {
+        # Return the absolute path specified by the argument.  Use to compare
+        # repositories that might include symlinks etc.
+        echo "$(cd -P $1; pwd)"
+    }
+    _relpath() {
+        # Return the relative path of the argument with respect to $TOP_DIR.
+        # We use python for this if available
+        echo $(python -c \
+               "import os.path;print(os.path.relpath('$1','$TOP_DIR'))" ||
+               "$1")
+    }
+    MR_REPO=$(_relpath "$MR_REPO")
+    _unclean() {
+        echo "Repository $MR_REPO contains uncommited changes."
+        if [[ "$@" == "-f" ]]; then
+            echo "Freeze forced with -f flag... continuing."
+        else
+            exit -1
+        fi
+    }
+    _freezeRev() {
+        if grep -qF "$MR_REPO" "$MR_FREEZE"; then
+            awk "{if (\$1 == \"$MR_REPO\") \
+                  print \$1 \" $_REV\"; \
+                  else print }" "$MR_FREEZE" > "$MR_FREEZE".tmp
+            mv -- "$MR_FREEZE".tmp "$MR_FREEZE"
+        else
+            echo "$MR_REPO $_REV" >> "$MR_FREEZE"
+        fi
+    }
+    _getFrozenRev() {
+        local rev=$(awk "{if (\$1 == \"$MR_REPO\") print \$2 }" "$MR_FREEZE")
+        if [ -z "$rev" ]; then
+            _err "Error: No repo '$MR_REPO' found in freeze file '$MR_FREEZE'"
+        else
+            echo "$rev"
+        fi
+    }
+
+hg_freeze =
+    _REV="$(hg id --id)"        # Has a trailing "+" in unclean
+    [[ $_REV == *+ ]] && _unclean "$@"
+    REV=${_REV%+}               # Remove trailing + if it is there.
+    _freezeRev
+
+hg_unfreeze =
+    _REV=$(_getFrozenRev) && hg update --check "$@" "$_REV"
+
+git_freeze =
+    _REV="$(git rev-parse HEAD)"
+    [[ -n "$(git status -z)" ]] && _unclean "$@"
+    _freezeRev
+
+git_unfreeze =
+    _REV=$(_getFrozenRev) && git checkout "$@" "$_REV"

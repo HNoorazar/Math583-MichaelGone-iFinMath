@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.15.2: http://docutils.sourceforge.net/" />
+<title>README.rst</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7952 2016-07-26 18:15:59Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document">
+
+
+<!-- -*- rst -*- -*- restructuredtext -*- -->
+<!-- This file should be written using the restructure text -->
+<!-- conventions.  It will be displayed on the bitbucket source page and -->
+<!-- serves as the documentation of the directory. -->
+<!-- This is so that I can work offline.  It should be ignored on bitbucket for -->
+<!-- example. -->
+<div class="sidebar">
+<p class="first sidebar-title">Sidebar</p>
+<div class="contents last topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#mmf-setup" id="id4">mmf_setup</a></li>
+<li><a class="reference internal" href="#quickstart-tl-dr" id="id5">Quickstart (TL;DR)</a></li>
+<li><a class="reference internal" href="#installing-tools" id="id6">Installing Tools</a></li>
+<li><a class="reference internal" href="#mercurial-hg-tools" id="id7">Mercurial (hg) Tools</a></li>
+<li><a class="reference internal" href="#developer-notes" id="id8">Developer Notes</a><ul>
+<li><a class="reference internal" href="#releases" id="id9">Releases</a></li>
+<li><a class="reference internal" href="#notes" id="id10">Notes</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="mmf-setup">
+<h1><a class="toc-backref" href="#id4">mmf_setup</a></h1>
+<p>This meta-project provides an easy way to install all of the python
+tools I typically use.  It also serves as a fairly minimal example of
+setting up a package the <a class="reference external" href="http://www.pip-installer.org/"><tt class="docutils literal">pip</tt></a> can install, and specifying
+dependencies.</p>
+<p>In particular, I structure it for the following use-cases:</p>
+<ol class="arabic">
+<li><p class="first">Rapid installation and configuration of the tools I need.  For
+example, I often use [CoCalc](cocalc.com).
+Whenever I create a new project, I need to perform some
+initialization.  With this project, it is simply a matter of using
+<a class="reference external" href="http://www.pip-installer.org/"><tt class="docutils literal">pip</tt></a> to install this package, and then using some of the
+tools. Specifically:</p>
+<pre class="literal-block">
+pip install --user mmf_setup
+mmf_setup cocalc
+
+# OR install from a particular version of the sources.
+pip install --user hg+https://hg.iscimath.org/mforbes/mmf_setup&#64;0.3.1
+mmf_setup cocalc
+</pre>
+</li>
+<li><p class="first">Initial setup of a python distribution on a new computer.  This is
+a little more involved since one needs to first install python (I
+recommend using <a class="reference external" href="http://conda.pydata.org/miniconda.html">Miniconda</a>) and then updating the tools.</p>
+</li>
+<li><p class="first">A place to document various aspects of installing and setting up
+python and related tools.  Some of this is old, but kept here for
+reference.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="quickstart-tl-dr">
+<h1><a class="toc-backref" href="#id5">Quickstart (TL;DR)</a></h1>
+<ol class="arabic">
+<li><p class="first">To get the notebook initialization features without having to install the
+package, just copy <a class="reference external" href="nbinit.py">nbinit.py</a> to your project.  Importing this
+will try to execute <tt class="docutils literal">import mmf_setup;mmf_setup.nbinit()</tt> but failing this,
+will manually run a similar code.</p>
+</li>
+<li><p class="first">Install this package from the source directory, <a class="reference external" href="https://pypi.python.org/pypi">PyPI</a>, etc. with
+one of the following:</p>
+<ul>
+<li><p class="first"><strong>Directly from PyPI</strong></p>
+<p><tt class="docutils literal">pip install <span class="pre">--user</span> mmf_setup[nbextensions]</tt></p>
+</li>
+<li><p class="first"><strong>From Source</strong></p>
+<p><tt class="docutils literal">pip install <span class="pre">--user</span> <span class="pre">hg+https://hg.iscimath.org/mforbes/mmf_setup[nbextensions]</span></tt></p>
+</li>
+<li><p class="first"><strong>From Local Source</strong> (<em>Run this from the source directory after you unpack it.</em>)</p>
+<p><tt class="docutils literal">pip install <span class="pre">--user</span> .[nbextnensions]</tt></p>
+</li>
+</ul>
+<p>Note: these can be run without the <tt class="docutils literal"><span class="pre">--user</span></tt> flag if you want to
+install them system-wide rather than into <a class="reference external" href="https://docs.python.org/2/library/site.html#site.USER_BASE"><tt class="docutils literal">site.USER_BASE</tt></a>.</p>
+</li>
+<li><p class="first">To get the notebook tools for Jupyter (IPython) notebooks, execute
+the following as a code cell in your notebook and then trust the
+notebook with <tt class="docutils literal">File/Trust Notebook</tt>:</p>
+<pre class="literal-block">
+import mmf_setup; mmf_setup.nbinit()
+</pre>
+<p>This will download and enable the calico extensions, as well as set
+the theme which is implemented in the output cell so it is stored
+for use online such as when rendered through <a class="reference external" href="http://nbviewer.ipython.org">NBViewer</a>.  One can
+specify different themes. (Presently only <tt class="docutils literal"><span class="pre">theme='default'</span></tt> and
+<tt class="docutils literal"><span class="pre">theme='mmf'</span></tt> are supported.)</p>
+</li>
+<li><p class="first">To use the mercurial notebook cleaning tools, simply source the
+<tt class="docutils literal">mmf_setup</tt> script:</p>
+<pre class="literal-block">
+. mmf_setup -v
+</pre>
+<p>To do this automatically when you login, add this line to your
+<tt class="docutils literal"><span class="pre">~/.bashc</span></tt> or <tt class="docutils literal"><span class="pre">~/.bash_profile</span></tt> scripts.  These can also be
+enabled manually by adding the following to your <tt class="docutils literal"><span class="pre">~/.hgrc</span></tt> file:</p>
+<pre class="literal-block">
+[extensions]
+strip=
+mmf_setup.nbclean=$MMF_UTILS/nbclean.py
+</pre>
+<p>where <tt class="docutils literal">$MMF_UTILS</tt> expands to the install location for the
+package (which can be seen by running <tt class="docutils literal">mmf_setup <span class="pre">-v</span></tt>).</p>
+<p>This will provide commands for committing clean notebooks such as
+<tt class="docutils literal">hg cstatus</tt>, <tt class="docutils literal">hg cdiff</tt> and <tt class="docutils literal">hg ccommit</tt>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="installing-tools">
+<h1><a class="toc-backref" href="#id6">Installing Tools</a></h1>
+<p>The following code will download and install the <a class="reference external" href="https://selenic.com/pipermail/mercurial-devel/2011-December/036480.html">Calico notebook
+extensions</a> from <a class="reference external" href="http://jupyter.cs.brynmawr.edu/hub/dblank/public/Jupyter%20Help.ipynb#2.-Installing-extensions">here</a>:</p>
+<pre class="literal-block">
+import mmf_setup.notebook_configuration
+mmf_setup.notebook_configuration.install_extensions()
+</pre>
+</div>
+<div class="section" id="mercurial-hg-tools">
+<h1><a class="toc-backref" href="#id7">Mercurial (hg) Tools</a></h1>
+<p>If you source the output of the <tt class="docutils literal">mmf_setup</tt> script:</p>
+<pre class="literal-block">
+. mmf_setup
+</pre>
+<p>then your <tt class="docutils literal">HGRCPATH</tt> will be amended to include this projects
+<tt class="docutils literal">hgrc</tt> file which does the following:</p>
+<ol class="arabic">
+<li><p class="first">Adds some useful extensions.</p>
+</li>
+<li><p class="first">Adds the following commands:</p>
+<ul>
+<li><p class="first"><tt class="docutils literal">hg lga</tt> (or <tt class="docutils literal">hg lg</tt>): provides a nice concise graphical
+display of the repo.</p>
+</li>
+<li><p class="first"><tt class="docutils literal">hg cstatus</tt> (or <tt class="docutils literal">hg cst</tt>):</p>
+</li>
+<li><p class="first"><tt class="docutils literal">hg cdiff</tt>: same for <tt class="docutils literal">hg diff</tt></p>
+</li>
+<li><p class="first"><tt class="docutils literal">hg cediff</tt>: same for <tt class="docutils literal">hg ediff</tt></p>
+</li>
+<li><p class="first"><tt class="docutils literal">hg crecord</tt>: same for <tt class="docutils literal">hg record</tt>.  Note, this does not
+function like commit - it will not record the notebooks with the
+full output.</p>
+</li>
+<li><p class="first"><tt class="docutils literal">hg ccommit</tt> (or <tt class="docutils literal">hg ccom</tt>): same for <tt class="docutils literal">hg com</tt> but also
+commits the full version of the notebooks with output as a new
+node off the present node with the message <tt class="docutils literal">..: Automatic commit of
+output</tt>.  This command has two behaviours depending on the
+configuration option <tt class="docutils literal">nbclean.output_branch</tt>.  If this is not
+set:</p>
+<pre class="literal-block">
+[nbclean]
+output_branch =
+</pre>
+<p>then <tt class="docutils literal">hg ccommit</tt> will commit a cleaned copy of your notebooks
+with the output stripped, and then will commit the full notebook
+with output (provided that the notebooks have output) as a new
+head:</p>
+<pre class="literal-block">
+| o  4: test ...: Automatic commit with .ipynb output
+|/
+&#64;  3: test ccommit 3
+|
+| o  2: test ...: Automatic commit with .ipynb output
+|/
+o  1: test ccommit 1
+|
+o  0: test commit 0
+</pre>
+<p>The parent will always be set to the clean node so that the output
+commits can be safely stripped from your repository if you choose
+not to keep them.</p>
+<p>The other mode of operation can be enabled by specifying a name for
+the output branch:</p>
+<pre class="literal-block">
+[nbclean]
+output_branch = auto_output
+</pre>
+<p>This will merge the changes into a branch with the specified name:</p>
+<pre class="literal-block">
+| o  4: test ...: Automatic commit with .ipynb output (...) auto_output
+|/|
+&#64; |  3: test ccommit 3
+| |
+| o  2: test ...: Automatic commit with .ipynb output (...) auto_output
+|/
+o  1: test ccommit 1
+|
+o  0: test commit 0
+</pre>
+<p>This facilitates stripping the output <tt class="docutils literal">hg strip 2</tt> for example
+will remove all output.  It also allows you to track the changes in
+the output.</p>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="developer-notes">
+<h1><a class="toc-backref" href="#id8">Developer Notes</a></h1>
+<p>There are a couple of subtle points here that should be mentioned.</p>
+<ul class="simple">
+<li>I explored both <tt class="docutils literal">(un)shelve</tt> and <tt class="docutils literal">commit/strip</tt> versions of
+saving the current state.  While the former allows for shorter
+aliases, it can potentially trigger merges, so we use the latter.</li>
+<li>I sometimes write commit hook.  These should only be run on the real
+commit, so we define the alias <tt class="docutils literal">_commit</tt> which will bypass the
+hooks as <a class="reference external" href="https://bitbucket.org/ipre/calico/downloads/">discussed here</a>.</li>
+<li>The list of files to strip is generated by <tt class="docutils literal">hg status <span class="pre">-man</span></tt>.  This
+only includes added or modified files.  This, if a notebook was
+commited with output (using <tt class="docutils literal">hg com</tt>) then it will not be
+stripped.</li>
+<li>Our approach of <tt class="docutils literal">. mmf_setup</tt> sets <tt class="docutils literal">HGRCPATH</tt> but if this was
+not set before, then this will skip the default search.  As such, we
+insert <tt class="docutils literal"><span class="pre">~/.hgrc</span></tt> if <tt class="docutils literal">HGRCPATH</tt> was not previously set.  This is
+not ideal, but short of sticking an <tt class="docutils literal">%include</tt> statement in the
+users <tt class="docutils literal"><span class="pre">~/.hgrc</span></tt> file, or creating an <tt class="docutils literal">hg</tt> alias, I do not see a
+robust solution.  Note: we only insert <tt class="docutils literal"><span class="pre">~/.hgrc</span></tt> if <tt class="docutils literal">HGRCPATH</tt>
+is not defined - I ran into problems when always inserting it since
+this can change the order of precedence.</li>
+<li>Chain commands with semicolons <tt class="docutils literal">;</tt> not <tt class="docutils literal">&amp;&amp;</tt> so that things are
+restored even if a command fails.  (For example, <tt class="docutils literal">hg ccom</tt> with a
+notebook that only has output changes used to fail early.)</li>
+</ul>
+<div class="section" id="releases">
+<h2><a class="toc-backref" href="#id9">Releases</a></h2>
+<p><strong>PyPi</strong></p>
+<p>To release a new version be sure to do the following. (The examples
+use revision numbers etc. for release 0.1.11.)</p>
+<ol class="arabic">
+<li><p class="first">Make sure your code works and that the tests pass. Pull any open
+issues into the main release branch, closing those issue branches.</p>
+<p>To run the tests, make sure you have <a class="reference external" href="https://nox.thea.codes">nox</a> and <a class="reference external" href="http://docs.continuum.io/conda">Conda</a> installed in
+some environment, then run:</p>
+<pre class="literal-block">
+nox
+</pre>
+<p>This will create a bunch of environments in <tt class="docutils literal">.nox</tt> and run the
+test-suite on those.</p>
+<ul>
+<li><p class="first">To activate one for testing, activate the environment:</p>
+<pre class="literal-block">
+conda activate .nox/test_conda-3-6
+make test
+</pre>
+</li>
+<li><p class="first">These can get quite large, so you might want to remove them when
+you are done with one of the following:</p>
+<pre class="literal-block">
+rm -rf .nox
+make clean        # Does this and more
+</pre>
+</li>
+</ul>
+<p>To manually run the test suite:</p>
+<pre class="literal-block">
+conda env remove -n tst3        # If needed
+conda create -yn tst3 python=3
+conda activate tst3
+pip install -e .[test]
+make test
+</pre>
+<p>If you want to test things from conda, you can get a debug
+environment by running:</p>
+<pre class="literal-block">
+conda debug .
+</pre>
+<p>After you activate the development library, install pytest:</p>
+<pre class="literal-block">
+cd /data/apps/conda/conda-bld/debug_.../work &amp;&amp; source build_env_setup.sh
+pip install -e .[test]
+</pre>
+</li>
+<li><p class="first">Commit all your changes. (This is an optional commit, if the
+changes are small, this can be rolled in with the following
+commit.)</p>
+</li>
+<li><p class="first">Remove the <tt class="docutils literal">'dev'</tt> from the version, i.e. <tt class="docutils literal">'0.1.11dev' <span class="pre">-&gt;</span>
+'0.1.11'</tt>, in the following files:</p>
+<pre class="literal-block">
+setup.py
+meta.yaml
+</pre>
+</li>
+<li><p class="first">Add a note about the changes in <tt class="docutils literal">CHANGES.txt</tt>.</p>
+</li>
+<li><p class="first">Check that the documentation looks okay:</p>
+<pre class="literal-block">
+make README_CHANGES.html
+open README_CHANGES.html
+make clean
+</pre>
+</li>
+<li><p class="first">Commit the changes.  Start the commit message with:</p>
+<pre class="literal-block">
+hg com -m &quot;REL: 0.1.11 ...&quot;
+</pre>
+</li>
+<li><p class="first">Create a pull request (PR) on bitbucket to pull this branch to
+<tt class="docutils literal">default</tt> and make sure to specify to close the branch on pull.</p>
+</li>
+<li><p class="first">Check, approve, and merge the PR.</p>
+</li>
+<li><p class="first">Upload your package to <tt class="docutils literal">pypi</tt> with <tt class="docutils literal">twine</tt>:</p>
+<pre class="literal-block">
+python setup.py sdist bdist_wheel
+twine check dist/mmf_setup-*
+twine upload dist/mmf_setup-*
+</pre>
+</li>
+<li><p class="first">Pull the merge from bitbucket to your development machine but <strong>do not update</strong>.</p>
+</li>
+<li><p class="first">Update the version in <tt class="docutils literal">setup.py</tt> and <tt class="docutils literal">meta.yaml</tt> to
+<tt class="docutils literal">'0.1.12dev'</tt> or whatever is relevant.</p>
+</li>
+<li><p class="first">From the previous commit (the last commit on branch <tt class="docutils literal">0.1.11</tt> in this case),
+change the branch:</p>
+<pre class="literal-block">
+hg branch 0.1.12
+</pre>
+</li>
+<li><p class="first">Commit and optionally push.  Now you are ready to work on new changes:</p>
+<pre class="literal-block">
+hg com -m &quot;BRN: Start branch 0.1.12&quot;
+hg push -r . --new-branch
+</pre>
+</li>
+</ol>
+<p><strong>Anaconda</strong></p>
+<p>The information about building the package for conda is specified in
+the <tt class="docutils literal">meta.yaml</tt> file.</p>
+<ol class="arabic">
+<li><p class="first">(Optional) Prepare a clean environment:</p>
+<pre class="literal-block">
+conda env remove -n tst3        # If needed
+conda create -yn tst3 python=3 anaconda-client conda-build
+conda activate tst3
+</pre>
+<p><em>(I keep the conda build tools in my base environment so I do not
+need this.)</em></p>
+</li>
+<li><p class="first">Build locally and test.  Note: we need to specify the channel since
+<tt class="docutils literal"><span class="pre">python-hglib</span></tt> is there.  Since we will host this on our channel,
+this will be explicitly specified by anyone installing <tt class="docutils literal">mmf_setup</tt>:</p>
+<pre class="literal-block">
+conda config --set anaconda_upload no
+conda build --override-channels -c defaults -c conda-forge -c mforbes .
+</pre>
+</li>
+<li><p class="first">(Optional) Debugging a failed build. If things go wrong before
+building, use a conda debug environment:</p>
+<pre class="literal-block">
+conda debug -c mforbes .
+cd .../conda-bld/debug_.../work &amp;&amp; source .../conda-bld/debug_.../work/build_env_setup.sh
+bash conda_build.sh
+</pre>
+<p>(Optional) Debugging failed tests. Again use conda debug, but
+provide the broken package:</p>
+<pre class="literal-block">
+conda debug .../conda-bld/broken/mmf_setup-0.11.0-py_0.tar.bz2
+cd .../conda-bld/debug_.../test_tmp &amp;&amp; source .../conda-bld/debug_.../test_tmp/conda_test_env_vars.sh
+bash conda_test_runner.sh
+</pre>
+<p>See the output of conda build for the location:</p>
+<pre class="literal-block">
+Tests failed for mmf_setup-0.3.0-py_0.tar.bz2 - moving package to /data/apps/conda/conda-bld/broken
+</pre>
+</li>
+</ol>
+<ol class="arabic" start="3">
+<li><p class="first">Login and upload to anaconda cloud:</p>
+<pre class="literal-block">
+CONDA_PACKAGE=&quot;$(conda build . --output)&quot;
+echo $CONDA_PACKAGE
+anaconda login
+anaconda upload $CONDA_PACKAGE
+</pre>
+</li>
+</ol>
+<ol class="arabic" start="5">
+<li><p class="first">Test the final package.  If everything is done correctly, you
+should be able to build a complete environment with this package:</p>
+<pre class="literal-block">
+conda create --use-local -n test_mmf_setup mmf_setup
+conda activate mmf_setup
+</pre>
+</li>
+</ol>
+</div>
+<div class="section" id="notes">
+<h2><a class="toc-backref" href="#id10">Notes</a></h2>
+<p>Various notes about python, IPython, etc. are stored in the docs folder.</p>
+</div>
+</div>
+</div>
+</body>
+</html>
